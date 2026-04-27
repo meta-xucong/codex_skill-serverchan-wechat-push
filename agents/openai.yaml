@@ -1,0 +1,4 @@
+interface:
+  display_name: "Server酱微信推送"
+  short_description: "通过 Server酱/ServerChan 发送微信推送通知。"
+  default_prompt: "用 Server酱发送一条微信推送通知。"
