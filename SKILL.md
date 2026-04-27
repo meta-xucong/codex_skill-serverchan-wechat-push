@@ -3,7 +3,7 @@ name: serverchan-wechat-push
 description: Send WeChat push notifications through ServerChan Turbo using a SendKey. Use when Codex needs to add, test, document, or call a WeChat notification or push feature in scripts, long-running tasks, monitors, automations, CI jobs, RPA workflows, or any workflow that should alert the user on completion, failure, approval-needed, or status changes.
 ---
 
-# ServerChan WeChat Push
+# codex_skill: ServerChan WeChat Push
 
 Use this skill whenever a task needs a lightweight WeChat notification through ServerChan Turbo.
 
