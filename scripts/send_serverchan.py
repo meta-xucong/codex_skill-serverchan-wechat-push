@@ -17,11 +17,15 @@ API_TEMPLATE = "https://sctapi.ftqq.com/{sendkey}.send"
 SECRET_FILE = Path.home() / ".codex" / "secrets" / "serverchan_sendkey.txt"
 
 
+def normalize_sendkey(value: str) -> str:
+    return value.lstrip("\ufeff").strip()
+
+
 def load_sendkey() -> str:
     if os.environ.get("SCT_SENDKEY"):
-        return os.environ["SCT_SENDKEY"]
+        return normalize_sendkey(os.environ["SCT_SENDKEY"])
     if SECRET_FILE.exists():
-        return SECRET_FILE.read_text(encoding="utf-8").strip()
+        return normalize_sendkey(SECRET_FILE.read_text(encoding="utf-8-sig"))
     return ""
 
 
@@ -58,7 +62,7 @@ def build_payload(args: argparse.Namespace) -> dict[str, str]:
 def send(sendkey: str, payload: dict[str, str], timeout: int) -> dict:
     data = urllib.parse.urlencode(payload).encode("utf-8")
     request = urllib.request.Request(
-        API_TEMPLATE.format(sendkey=sendkey),
+        API_TEMPLATE.format(sendkey=normalize_sendkey(sendkey)),
         data=data,
         method="POST",
     )
